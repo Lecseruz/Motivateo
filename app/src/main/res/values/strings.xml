@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Motivateo</string>
+    <string name="active">Active</string>
+    <string name="today">Today</string>
+    <string name="have_account">Already have account</string>
+    <string name="registration">Registration</string>
+    <string name="login">Login</string>
+    <string name="signin">SignIn</string>
+    <string name="back">back</string>
+    <string name="com_auth0_client_id">1erGzfgFDuep1ICCfrYtgvY742M008N1</string>
+    <string name="com_auth0_domain">magomed.eu.auth0.com"</string>
+    <string name="auth0_preferences">AUTH0_SHARED_PREFERENCES_KEY</string>
+</resources>
