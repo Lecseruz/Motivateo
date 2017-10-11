@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.auth0.android.Auth0;
@@ -20,13 +19,10 @@ import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
 import com.example.magomed.motivateo.app.App;
 import com.example.magomed.motivateo.di.components.AuthComponent;
-import com.example.magomed.motivateo.di.components.DaggerAuthComponent;
-import com.example.magomed.motivateo.di.module.ApiModule;
 import com.example.magomed.motivateo.managers.data.CredentialsManager;
 import com.example.magomed.motivateo.models.Message;
 import com.example.magomed.motivateo.models.SocialUser;
 import com.example.magomed.motivateo.models.SocialUserService;
-import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.models.UserService;
 import com.example.magomed.motivateo.service.ServiceFactory;
 
@@ -55,29 +51,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupComponent();
+        App.getAppComponent().inject(this);
 
-        findViewById(R.id.registration).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
-        findViewById(R.id.sign_in).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.sign_in_vk).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                login();
-            }
-        });
+        Intent intent = new Intent(MainActivity.this, TodayFragment.class);
+        startActivity(intent);
+//        findViewById(R.id.registration).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        findViewById(R.id.sign_in).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        findViewById(R.id.sign_in_vk).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                login();
+//            }
+//        });
     }
 
     private void login() {
@@ -137,13 +135,13 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onNext(Message response) {
                                         if (response.getCode() == 200) {
-                                            Intent intent = new Intent(MainActivity.this, TodayActivity.class);
+                                            Intent intent = new Intent(MainActivity.this, TodayFragment.class);
                                             startActivity(intent);
                                         }
                                     }
                                 });
 
-                        Intent intent = new Intent(MainActivity.this, TodayActivity.class);
+                        Intent intent = new Intent(MainActivity.this, TodayFragment.class);
                         startActivity(intent);
                     }
 
@@ -154,12 +152,4 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    protected void setupComponent() {
-        if (authComponent == null) {
-            authComponent = DaggerAuthComponent.builder()
-                    .apiModule(new ApiModule(this))
-                    .build();
-        }
-        authComponent.inject(this);
-    }
 }

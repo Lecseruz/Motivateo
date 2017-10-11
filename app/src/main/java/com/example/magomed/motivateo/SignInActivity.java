@@ -1,9 +1,7 @@
 package com.example.magomed.motivateo;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,13 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.provider.AuthCallback;
-import com.auth0.android.provider.WebAuthProvider;
-import com.auth0.android.result.Credentials;
 import com.example.magomed.motivateo.models.Message;
 import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.models.UserService;
@@ -69,7 +61,7 @@ public class SignInActivity extends AppCompatActivity {
                                 @Override
                                 public void onNext(Message response) {
                                     if (response.getCode() == 200) {
-                                        Intent intent = new Intent(SignInActivity.this, TodayActivity.class);
+                                        Intent intent = new Intent(SignInActivity.this, TodayFragment.class);
                                         startActivity(intent);
                                     } else {
                                         textViewInfo.setText(" user not found");

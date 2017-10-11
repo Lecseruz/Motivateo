@@ -13,7 +13,7 @@ public class ActivityAll extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all);
+        setContentView(R.layout.fragment_all);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.all_toolbar);
         myToolbar.inflateMenu(R.menu.menu_tasks);
         setSupportActionBar(myToolbar);
@@ -40,7 +40,7 @@ public class ActivityAll extends AppCompatActivity {
                 return true;
 
             case R.id.action_add:
-                intent = new Intent(ActivityAll.this, SettingsActivity.class);
+                intent = new Intent(ActivityAll.this, SettingsFragment.class);
                 startActivity(intent);
                 return true;
 

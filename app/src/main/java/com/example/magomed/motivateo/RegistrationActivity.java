@@ -60,7 +60,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 @Override
                                 public void onNext(Message response) {
                                     if (response.getCode() == 200) {
-                                        Intent intent = new Intent(RegistrationActivity.this, TodayActivity.class);
+                                        Intent intent = new Intent(RegistrationActivity.this, TodayFragment.class);
                                         startActivity(intent);
                                     } else {
                                         textViewInfo.setText(" user not found");
