@@ -22,14 +22,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/state_task_button"
             android:layout_width="133dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="@string/tasks"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:text="@string/tasks"
+            android:textColor="@color/background_dark"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/state_shop_button"
@@ -38,6 +40,7 @@
             android:textSize="15sp"
             android:text="@string/shop"
             android:layout_alignParentBottom="true"
+            android:textColor="@color/background_dark"
             android:layout_toEndOf="@+id/state_task_button" />
 
         <Button
@@ -45,6 +48,7 @@
             android:layout_width="133dp"
             android:layout_height="wrap_content"
             android:text="@string/settings"
+            android:textColor="@color/background_dark"
             android:textSize="15sp"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/state_shop_button" />

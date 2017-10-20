@@ -1,6 +1,9 @@
 package com.example.magomed.motivateo.service;
 
+import com.squareup.okhttp.OkHttpClient;
+
 import retrofit.RestAdapter;
+
 
 public class ServiceGenerator {
 

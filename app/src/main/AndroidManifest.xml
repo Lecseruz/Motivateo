@@ -22,12 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsFragment" />
-        <activity android:name=".ActivityAll" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".SignInActivity"/>
-        <activity android:name=".TodayFragment" />
-
+        <activity android:name=".InteractionActivity"/>
     </application>
 
 </manifest>

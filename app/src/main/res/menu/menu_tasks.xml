@@ -6,19 +6,12 @@
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/action_today"
-        android:title="Today"
-        app:showAsAction="always" />
+        android:title="@string/today"
+        app:showAsAction="ifRoom" />
 
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/action_all"
         android:title="All"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_add"
-        android:icon="@drawable/ic_sort_black_24dp"
-        app:showAsAction="never"
-        android:title="settings" />
-
 </menu>

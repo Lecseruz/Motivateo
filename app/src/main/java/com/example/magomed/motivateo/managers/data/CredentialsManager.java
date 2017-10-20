@@ -15,6 +15,7 @@ public class CredentialsManager {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
 
+
         sharedPref.edit()
                 .putString(Constants.ID_TOKEN, credentials.getIdToken())
                 .putString(Constants.REFRESH_TOKEN, credentials.getRefreshToken())
@@ -27,7 +28,6 @@ public class CredentialsManager {
     public Credentials getCredentials(@NonNull Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
-
         return new Credentials(
                 sharedPref.getString(Constants.ID_TOKEN, null),
                 sharedPref.getString(Constants.ACCESS_TOKEN, null),
