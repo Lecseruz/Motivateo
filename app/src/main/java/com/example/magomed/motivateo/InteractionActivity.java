@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.magomed.motivateo.adapters.TaskPagerAdapter;
 
 import static com.example.magomed.motivateo.net.utils.Constants.*;
 
@@ -31,6 +34,8 @@ public class InteractionActivity extends AppCompatActivity{
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu_tasks);
         setSupportActionBar(myToolbar);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new TaskPagerAdapter(this));
         taskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,8 +125,7 @@ public class InteractionActivity extends AppCompatActivity{
             case R.id.action_all:
 
             case R.id.action_today:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

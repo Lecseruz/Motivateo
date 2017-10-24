@@ -1,4 +1,7 @@
-package com.example.magomed.motivateo.models;
+package com.example.magomed.motivateo.service;
+
+import com.example.magomed.motivateo.models.Message;
+import com.example.magomed.motivateo.models.SocialUser;
 
 import retrofit.http.Body;
 import retrofit.http.POST;

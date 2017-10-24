@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.magomed.motivateo.models.Message;
 import com.example.magomed.motivateo.models.User;
-import com.example.magomed.motivateo.models.UserService;
+import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.service.ServiceFactory;
 
 import java.util.Objects;

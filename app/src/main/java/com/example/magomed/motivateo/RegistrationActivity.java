@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.magomed.motivateo.models.Message;
 import com.example.magomed.motivateo.models.User;
-import com.example.magomed.motivateo.models.UserService;
+import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.service.ServiceFactory;
 
 import java.util.Objects;
@@ -84,8 +84,6 @@ public class RegistrationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_back:
-//                Intent intent = new Intent(RegistrationActivity.this, ActivityAll.class);
-//                startActivity(intent);
                 finish();
                 return true;
 

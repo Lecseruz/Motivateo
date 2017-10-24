@@ -23,8 +23,8 @@ import com.example.magomed.motivateo.managers.data.CredentialsManager;
 import com.example.magomed.motivateo.managers.data.UserManager;
 import com.example.magomed.motivateo.models.Message;
 import com.example.magomed.motivateo.models.SocialUser;
-import com.example.magomed.motivateo.models.SocialUserService;
-import com.example.magomed.motivateo.models.UserService;
+import com.example.magomed.motivateo.service.SocialUserService;
+import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.service.ServiceFactory;
 
 import javax.inject.Inject;
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         App.getAppComponent().inject(this);
 
-        signIn();
+        Intent intent = new Intent(MainActivity.this, InteractionActivity.class);
+        startActivity(intent);
+//        signIn();
 
         findViewById(R.id.registration).setOnClickListener(new View.OnClickListener() {
             @Override

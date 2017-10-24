@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Motivateo</string>
     <string name="active">Active</string>
-    <string name="today"
-        color = "@color/colorAccent">Today</string>
+    <string name="Today">Today</string>
+    <string name="All">All</string>
     <string name="have_account">Already have account</string>
     <string name="registration">Registration</string>
     <string name="login">Login</string>
