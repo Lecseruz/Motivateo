@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 
 
-public class ActivityAll extends BaseFragment {
+public class AllFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,12 +45,12 @@ public class ActivityAll extends BaseFragment {
 //                return true;
 //
 //            case R.id.action_today:
-//                intent = new Intent(ActivityAll.this, MainActivity.class);
+//                intent = new Intent(AllFragment.this, MainActivity.class);
 //                startActivity(intent);
 //                return true;
 //
 //            case R.id.action_add:
-//                intent = new Intent(ActivityAll.this, SettingsFragment.class);
+//                intent = new Intent(AllFragment.this, SettingsFragment.class);
 //                startActivity(intent);
 //                return true;
 //

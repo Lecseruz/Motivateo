@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button_today"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Today"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/button_all"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/All"
+        android:layout_alignBaseline="@+id/button_today"
+        android:layout_alignBottom="@+id/button_today"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button_today" />
+
+    <FrameLayout
+        android:id="@+id/list_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"/>
+</RelativeLayout>
