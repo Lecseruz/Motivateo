@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 
 import com.example.magomed.motivateo.fragments.BaseFragment;
 
-/**
- * Created by magomed on 10.10.17.
- */
 
 public class ShopFragment extends BaseFragment {
     @Nullable

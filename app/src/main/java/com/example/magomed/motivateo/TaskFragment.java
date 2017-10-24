@@ -29,12 +29,14 @@ public class TaskFragment extends BaseFragment {
                 case R.id.button_all: {
                     STATE = STATE_ALL;
                     replaceFragment();
+                    replaceColorForButtons();
                     break;
                 }
 
                 case R.id.button_today: {
                     STATE = STATE_TODAY;
                     replaceFragment();
+                    replaceColorForButtons();
                     break;
                 }
 
@@ -57,11 +59,9 @@ public class TaskFragment extends BaseFragment {
         return view;
     }
 
-    public void replaceFragment(){
-        switch (STATE){
+    public void replaceFragment() {
+        switch (STATE) {
             case STATE_ALL: {
-                buttonAll.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                buttonToday.setTextColor(getResources().getColor(R.color.background_dark));
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Fragment body = fragmentManager.findFragmentById(R.id.list_tasks);
                 if (body != null) {
@@ -71,9 +71,8 @@ public class TaskFragment extends BaseFragment {
                 transaction.commit();
                 break;
             }
+
             case STATE_TODAY: {
-                buttonToday.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                buttonAll.setTextColor(getResources().getColor(R.color.background_dark));
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Fragment body = fragmentManager.findFragmentById(R.id.list_tasks);
                 if (body != null) {
@@ -84,7 +83,25 @@ public class TaskFragment extends BaseFragment {
                 break;
             }
 
-            default: break;
+            default:
+                break;
+        }
+    }
+
+    public void replaceColorForButtons() {
+        switch (STATE) {
+            case STATE_TODAY: {
+                buttonToday.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                buttonAll.setTextColor(getResources().getColor(R.color.background_dark));
+                break;
+            }
+
+            case STATE_ALL: {
+                buttonAll.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                buttonToday.setTextColor(getResources().getColor(R.color.background_dark));
+                break;
+            }
+
         }
     }
 }

@@ -14,76 +14,79 @@ import android.widget.Button;
 import static com.example.magomed.motivateo.net.utils.Constants.*;
 
 public class InteractionActivity extends AppCompatActivity{
+    private Button settingsButton;
+    private Button shopButton;
+    private Button taskButton;
     private FragmentManager fragmentManager;
-    private FragmentTransaction transaction;
     private Toolbar myToolbar;
+    private String STATE = STATE_TASKS;
 
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.state_task_button: {
+                    STATE = STATE_TASKS;
+                    myToolbar.setTitle(MENU_TASKS);
+                    replaceColorForButtons();
+                    replaceFragment();
+                    break;
+                }
+
+                case R.id.state_shop_button: {
+                    STATE = STATE_SHOP;
+                    myToolbar.setTitle(MENU_SHOP);
+                    replaceColorForButtons();
+                    replaceFragment();
+                    break;
+                }
+
+                case R.id.state_settings_button: {
+                    STATE = STATE_SETTINGS;
+                    myToolbar.setTitle(MENU_SETTINGS);
+                    replaceColorForButtons();
+                    replaceFragment();
+                    break;
+                }
+
+                default: break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
-        final Button settingsButton = (Button)findViewById(R.id.state_settings_button);
-        final Button shopButton = (Button)findViewById(R.id.state_shop_button);
-        final Button taskButton = (Button)findViewById(R.id.state_task_button);
+        settingsButton = (Button)findViewById(R.id.state_settings_button);
+        shopButton = (Button)findViewById(R.id.state_shop_button);
+        taskButton = (Button)findViewById(R.id.state_task_button);
         fragmentManager = getSupportFragmentManager();
-
-
-        taskButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        transaction = fragmentManager.beginTransaction();
-        Fragment body = fragmentManager.findFragmentById(R.id.body_container);
-        if (body != null){
-            transaction.remove(body);
-        }
-        transaction.add(R.id.body_container, new TaskFragment());
-        transaction.commit();
-
-
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu_authorization);
         setSupportActionBar(myToolbar);
-        taskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myToolbar.setTitle(MENU_TASKS);
-                taskButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                settingsButton.setTextColor(getResources().getColor(R.color.background_dark));
-                shopButton.setTextColor(getResources().getColor(R.color.background_dark));
-                transaction = fragmentManager.beginTransaction();
+        taskButton.setOnClickListener(clickListener);
+        settingsButton.setOnClickListener(clickListener);
+        shopButton.setOnClickListener(clickListener);
+        replaceColorForButtons();
+        replaceFragment();
+    }
+
+    public void replaceFragment(){
+        switch(STATE){
+            case STATE_TASKS: {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Fragment body = fragmentManager.findFragmentById(R.id.body_container);
                 if (body != null){
                     transaction.remove(body);
                 }
                 transaction.add(R.id.body_container, new TaskFragment());
                 transaction.commit();
+                break;
             }
-        });
 
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myToolbar.setTitle(MENU_SETTINGS);
-                taskButton.setTextColor(getResources().getColor(R.color.background_dark));
-                settingsButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                shopButton.setTextColor(getResources().getColor(R.color.background_dark));
-
-                transaction = fragmentManager.beginTransaction();
-                Fragment body = fragmentManager.findFragmentById(R.id.body_container);
-                if (body != null){
-                    transaction.remove(body);
-                }
-                transaction.add(R.id.body_container, new SettingsFragment());
-                transaction.commit();
-            }
-        });
-        shopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transaction = fragmentManager.beginTransaction();
-                myToolbar.setTitle(MENU_SHOP);
-                taskButton.setTextColor(getResources().getColor(R.color.background_dark));
-                shopButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                settingsButton.setTextColor(getResources().getColor(R.color.background_dark));
+            case STATE_SHOP: {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Fragment body = fragmentManager.findFragmentById(R.id.body_container);
                 if (body != null){
                     transaction.remove(body);
@@ -91,7 +94,46 @@ public class InteractionActivity extends AppCompatActivity{
                 transaction.add(R.id.body_container, new ShopFragment());
                 transaction.commit();
             }
-        });
+
+            case STATE_SETTINGS: {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                Fragment body = fragmentManager.findFragmentById(R.id.body_container);
+                if (body != null){
+                    transaction.remove(body);
+                }
+                transaction.add(R.id.body_container, new SettingsFragment());
+                transaction.commit();
+            }
+
+            default: break;
+        }
+    }
+
+    public void replaceColorForButtons(){
+        switch(STATE){
+            case STATE_TASKS: {
+                taskButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                settingsButton.setTextColor(getResources().getColor(R.color.background_dark));
+                shopButton.setTextColor(getResources().getColor(R.color.background_dark));
+                break;
+            }
+
+            case STATE_SHOP: {
+                taskButton.setTextColor(getResources().getColor(R.color.background_dark));
+                shopButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                settingsButton.setTextColor(getResources().getColor(R.color.background_dark));
+                break;
+            }
+
+            case STATE_SETTINGS: {
+                taskButton.setTextColor(getResources().getColor(R.color.background_dark));
+                settingsButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                shopButton.setTextColor(getResources().getColor(R.color.background_dark));
+                break;
+            }
+
+            default: break;
+        }
     }
 
     @Override
@@ -103,17 +145,6 @@ public class InteractionActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_all:
-
-            case R.id.action_today:
-
-                return true;
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
+        return true;
     }
 }
