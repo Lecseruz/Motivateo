@@ -29,14 +29,26 @@
         android:layout_below="@+id/button_set_time"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:id="@+id/button_recall"
+    <LinearLayout
+        android:id="@+id/remind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recall"
-        android:textSize="@dimen/text_size"
+        android:orientation="horizontal"
         android:layout_below="@+id/button_repeat"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remind"
+            android:textSize="@dimen/text_size"
+            android:layout_weight="1"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_count"
@@ -44,7 +56,7 @@
         android:layout_height="wrap_content"
         android:text="@string/count"
         android:textSize="@dimen/text_size"
-        android:layout_below="@+id/button_recall"
+        android:layout_below="@+id/remind"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -56,4 +68,14 @@
         android:layout_below="@+id/button_count"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:textSize="@dimen/text_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="73dp" />
 </RelativeLayout>

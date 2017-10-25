@@ -21,4 +21,7 @@
     <string name="recall">Recall</string>
     <string name="count">Count</string>
     <string name="notification">Notification</string>
+    <string name="remind">Remind</string>
+    <string name="save">Save</string>
+    <string name="button">Button</string>
 </resources>

@@ -56,6 +56,7 @@ public class TaskFragment extends BaseFragment {
         buttonAll.setOnClickListener(clickListener);
         buttonToday.setOnClickListener(clickListener);
         replaceFragment();
+        replaceColorForButtons();
         return view;
     }
 
