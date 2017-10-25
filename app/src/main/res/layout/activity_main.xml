@@ -12,7 +12,8 @@
         android:layout_height="200dp"
         app:srcCompat="@drawable/m14"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="100dp"
+        android:contentDescription="" />
 
     <Button
         android:id="@+id/registration"
@@ -21,14 +22,14 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
         android:text="@string/registration"
-        android:textSize="20sp"/>
+        android:textSize="@dimen/text_size"/>
 
     <TextView
         android:id="@+id/main_textView"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:text="@string/have_account"/>
 
     <Button
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/signin"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:background="@android:color/holo_orange_light"/>
 
     <Button
@@ -45,8 +46,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="vk"
+        android:text="@string/vk"
         android:layout_marginTop="10dp"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:background="@android:color/holo_orange_light"/>
 </LinearLayout>
