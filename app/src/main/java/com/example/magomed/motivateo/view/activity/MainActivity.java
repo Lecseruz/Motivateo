@@ -2,6 +2,7 @@ package com.example.magomed.motivateo.view.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
 
         fragmentManager = getFragmentManager();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
+
 
         setSupportActionBar(toolbar);
         setupComponent();

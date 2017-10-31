@@ -1,11 +1,14 @@
 package com.example.magomed.motivateo.view.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,34 +20,39 @@ import static com.example.magomed.motivateo.net.utils.Constants.STATE_ALL;
 import static com.example.magomed.motivateo.net.utils.Constants.STATE_TODAY;
 
 public class TaskFragment extends BaseFragment {
-    public  String STATE = STATE_ALL;
+    public String STATE = STATE_ALL;
     private Button buttonToday;
     private Button buttonAll;
 
     private FragmentManager fragmentManager;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-    private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.button_all: {
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            Fragment body = fragmentManager.findFragmentById(R.id.body_container);
+            if (body != null) {
+                transaction.remove(body);
+            }
+            switch (item.getItemId()) {
+                case R.id.navigation_all: {
                     STATE = STATE_ALL;
                     replaceFragment();
-                    replaceColorForButtons();
-                    break;
+                    return true;
                 }
 
-                case R.id.button_today: {
+                case R.id.navigation_today: {
                     STATE = STATE_TODAY;
                     replaceFragment();
-                    replaceColorForButtons();
-                    break;
+                    return true;
                 }
+                default: break;
 
-                default:
-                    break;
             }
+            return false;
         }
+
     };
 
     @Nullable
@@ -52,12 +60,9 @@ public class TaskFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_tasks, container, false);
         fragmentManager = getFragmentManager();
-        buttonAll = view.findViewById(R.id.button_all);
-        buttonToday = view.findViewById(R.id.button_today);
-        buttonAll.setOnClickListener(clickListener);
-        buttonToday.setOnClickListener(clickListener);
         replaceFragment();
-        replaceColorForButtons();
+        BottomNavigationView navigation = view.findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         return view;
     }
 
@@ -87,23 +92,6 @@ public class TaskFragment extends BaseFragment {
 
             default:
                 break;
-        }
-    }
-
-    public void replaceColorForButtons() {
-        switch (STATE) {
-            case STATE_TODAY: {
-                buttonToday.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                buttonAll.setTextColor(getResources().getColor(R.color.background_dark));
-                break;
-            }
-
-            case STATE_ALL: {
-                buttonAll.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                buttonToday.setTextColor(getResources().getColor(R.color.background_dark));
-                break;
-            }
-
         }
     }
 }
