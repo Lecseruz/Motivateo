@@ -1,6 +1,6 @@
 package com.example.magomed.motivateo.presenter;
 
-import com.example.magomed.motivateo.view.fragment.WelcomeFragment;
+import com.example.magomed.motivateo.view.fragment.IWelcomeFragment;
 
 /**
  * Created by magomed on 29.10.17.
@@ -9,7 +9,7 @@ import com.example.magomed.motivateo.view.fragment.WelcomeFragment;
 public interface IWelcomeFragmentPresenter {
     void login();
     void signUp();
-    void onCreate(WelcomeFragment view);
+    void onCreate(IWelcomeFragment view);
     void onPause();
     void saveUserProfile();
     boolean isSignUp();

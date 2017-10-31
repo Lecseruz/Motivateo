@@ -145,9 +145,8 @@ public class WelcomeFragmentPresenterImpl implements IWelcomeFragmentPresenter {
                 });
     }
 
-
     @Override
-    public void onCreate(WelcomeFragment view) {
+    public void onCreate(IWelcomeFragment view) {
         this.fragment = view;
     }
 

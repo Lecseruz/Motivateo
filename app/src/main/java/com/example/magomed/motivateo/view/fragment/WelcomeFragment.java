@@ -59,7 +59,7 @@ public class WelcomeFragment extends Fragment implements IWelcomeFragment{
             @Override
             public void onClick(View view) {
                 fragmentManager.beginTransaction()
-                        .replace(R.id.body_container, new RegistrationFragment())
+                        .replace(R.id.body_container, new SignUpFragment())
                         .addToBackStack(null)
                         .commit();
             }

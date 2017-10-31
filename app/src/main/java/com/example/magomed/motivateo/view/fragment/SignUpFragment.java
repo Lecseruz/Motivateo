@@ -15,15 +15,13 @@ import android.widget.TextView;
 import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.app.App;
 import com.example.magomed.motivateo.models.User;
-import com.example.magomed.motivateo.presenter.SignInFragmentPresenter;
+import com.example.magomed.motivateo.presenter.ISignUpFragmentPresenter;
+import com.example.magomed.motivateo.presenter.SignUpFragmentPresenter;
 
 import java.util.Objects;
 
-import javax.inject.Inject;
-
-
-public class SignInFragment extends Fragment implements ISignInFragment{
-    SignInFragmentPresenter presenter;
+public class SignUpFragment extends Fragment implements ISignUpFragment {
+    ISignUpFragmentPresenter presenter;
 
     private AppCompatActivity activity;
 
@@ -47,41 +45,43 @@ public class SignInFragment extends Fragment implements ISignInFragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        presenter = new SignInFragmentPresenter();
+        presenter = new SignUpFragmentPresenter();
         presenter.onCreate(this);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
-        view.findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        view.findViewById(R.id.registration_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final TextView textViewInfo = view.findViewById(R.id.sign_in_text_view);
+                final TextView textViewInfo = (TextView) view.findViewById(R.id.registration_text_view);
 
                 if (isEmpty()) {
                     textViewInfo.setText("Error data");
                 } else {
-                    presenter.signIn();
+                    presenter.signUp();
                 }
             }
         });
         return view;
     }
 
+    @Override
     public boolean isEmpty() {
-        final EditText password =  getView().findViewById(R.id.sign_in_password);
-        final EditText login =  getView().findViewById(R.id.sign_in_login);
+        final EditText email = getView().findViewById(R.id.registration_email);
+        final EditText password = getView().findViewById(R.id.registration_password);
+        final EditText login = getView().findViewById(R.id.registration_login);
 
-        return (Objects.equals(password.getText().toString(), "") && Objects.equals(login.getText().toString(), ""));
+        return (Objects.equals(email.getText().toString(), "") && Objects.equals(password.getText().toString(), "") && Objects.equals(login.getText().toString(), ""));
     }
 
     @Override
     public User getUserInformation() {
-        final EditText password = getView().findViewById(R.id.sign_in_password);
-        final EditText login =  getView().findViewById(R.id.sign_in_login);
-        return new User(null, login.getText().toString(), password.getText().toString());
+        final EditText email = getView().findViewById(R.id.registration_email);
+        final EditText password = getView().findViewById(R.id.registration_password);
+        final EditText login = getView().findViewById(R.id.registration_login);
+        return new User(email.getText().toString(), login.getText().toString(), password.getText().toString());
     }
 
     @Override
@@ -92,6 +92,6 @@ public class SignInFragment extends Fragment implements ISignInFragment{
 
     @Override
     public void errorSignIn() {
-        ((TextView)getView().findViewById(R.id.sign_in_text_view)).setText(" user not found");
+        ((TextView) getView().findViewById(R.id.registration_text_view)).setText(" user not found");
     }
 }
