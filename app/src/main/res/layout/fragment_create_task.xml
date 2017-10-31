@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/task_name"
@@ -16,26 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/set_time"
-        android:textSize="@dimen/text_size"
-        android:layout_below="@+id/task_name"
-        android:layout_alignParentStart="true" />
+        android:textSize="@dimen/text_size" />
 
     <Button
         android:id="@+id/button_repeat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/repeat"
-        android:textSize="@dimen/text_size"
-        android:layout_below="@+id/button_set_time"
-        android:layout_alignParentStart="true" />
+        android:textSize="@dimen/text_size" />
 
     <LinearLayout
         android:id="@+id/remind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/button_repeat"
-        android:layout_alignParentEnd="true" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,27 +49,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/count"
-        android:textSize="@dimen/text_size"
-        android:layout_below="@+id/remind"
-        android:layout_alignParentStart="true" />
+        android:textSize="@dimen/text_size" />
 
     <Button
         android:id="@+id/button_notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/notification"
-        android:textSize="@dimen/text_size"
-        android:layout_below="@+id/button_count"
-        android:layout_alignParentStart="true" />
+        android:textSize="@dimen/text_size" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        android:textSize="@dimen/text_size"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="73dp" />
-</RelativeLayout>
+        android:textSize="@dimen/text_size"/>
+</LinearLayout>

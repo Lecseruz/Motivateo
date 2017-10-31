@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_dark">
 
-    <include
-        android:id="@+id/registration_toolbar"
-        layout="@layout/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"

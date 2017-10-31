@@ -1,4 +1,4 @@
-package com.example.magomed.motivateo;
+package com.example.magomed.motivateo.view.fragment;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 
 public class SettingsFragment extends BaseFragment {

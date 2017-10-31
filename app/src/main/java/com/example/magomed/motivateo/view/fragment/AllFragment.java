@@ -1,10 +1,11 @@
-package com.example.magomed.motivateo;
+package com.example.magomed.motivateo.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 
 

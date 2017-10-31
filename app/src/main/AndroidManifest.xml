@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activity.MainActivity"
             android:label="Motivator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".SignInActivity"/>
-        <activity android:name=".InteractionActivity"/>
+        <activity android:name=".view.fragment.RegistrationFragment" />
+        <activity android:name=".view.fragment.SignInFragment"/>
+        <activity android:name=".view.activity.InteractionActivity"/>
     </application>
 
 
