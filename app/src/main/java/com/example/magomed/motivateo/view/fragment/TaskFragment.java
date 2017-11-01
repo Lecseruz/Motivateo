@@ -21,8 +21,6 @@ import static com.example.magomed.motivateo.net.utils.Constants.STATE_TODAY;
 
 public class TaskFragment extends BaseFragment {
     public String STATE = STATE_ALL;
-    private Button buttonToday;
-    private Button buttonAll;
 
     private FragmentManager fragmentManager;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

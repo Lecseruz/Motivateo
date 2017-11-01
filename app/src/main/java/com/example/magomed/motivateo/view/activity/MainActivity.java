@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
-        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
+//        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
 
 
         setSupportActionBar(toolbar);
