@@ -1,8 +1,12 @@
 package com.example.magomed.motivateo.view.fragment;
 
-/**
- * Created by magomed on 01.11.17.
- */
+import com.example.magomed.motivateo.models.Message;
+import com.example.magomed.motivateo.models.Task;
 
-class IListFragmentView {
+import java.util.List;
+
+
+public interface IListTaskFragmentView {
+    Message getUserInformation();
+    void setListTaskAdapter(List<Task> itemArtists);
 }

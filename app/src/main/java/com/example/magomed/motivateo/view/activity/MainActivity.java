@@ -16,9 +16,15 @@ import com.example.magomed.motivateo.view.fragment.WelcomeFragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements IMainActivityView {
     @Inject
     MainActivityPresenterImpl presenter;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private MainActivityComponent component;
     public FragmentManager fragmentManager;
@@ -29,21 +35,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         setContentView(R.layout.activity_main);
 
         fragmentManager = getFragmentManager();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
 
 //        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
 
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         setupComponent();
-        Fragment fragment = fragmentManager.findFragmentById(R.layout.fragment_welcome);
-        if (fragment == null){
-            fragment = new WelcomeFragment();
-        }
         if (savedInstanceState == null){
             fragmentManager.beginTransaction()
-                    .replace(R.id.body_container, fragment)
+                    .replace(R.id.body_container, new WelcomeFragment())
                     .commit();
         }
     }

@@ -15,8 +15,20 @@ import com.example.magomed.motivateo.view.fragment.SettingsFragment;
 import com.example.magomed.motivateo.view.fragment.ShopFragment;
 import com.example.magomed.motivateo.view.fragment.TaskFragment;
 
-public class InteractionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class InteractionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    FragmentManager fragmentManager;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,20 +42,18 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        ButterKnife.bind(this);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.menu_authorization);
-        setSupportActionBar(myToolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar.inflateMenu(R.menu.menu_authorization);
+        setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, myToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.body_container, new TaskFragment())
                 .commit();
@@ -51,7 +61,6 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -72,7 +81,6 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        FragmentManager fragmentManager = getSupportFragmentManager();
         switch (item.getItemId()){
             case R.id.tasks: {
                 setTitle(getString(R.string.tasks));
@@ -99,8 +107,6 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
 
             default: break;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

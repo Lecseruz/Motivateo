@@ -50,7 +50,6 @@ public class TaskFragment extends BaseFragment {
             }
             return false;
         }
-
     };
 
     @Nullable
