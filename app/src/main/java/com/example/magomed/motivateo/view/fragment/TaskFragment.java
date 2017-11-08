@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.fragments.BaseFragment;
@@ -22,7 +21,10 @@ import static com.example.magomed.motivateo.net.utils.Constants.STATE_TODAY;
 public class TaskFragment extends BaseFragment {
     public String STATE = STATE_ALL;
 
+    BottomNavigationView navigation;
+
     private FragmentManager fragmentManager;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -58,7 +60,7 @@ public class TaskFragment extends BaseFragment {
         final View view = inflater.inflate(R.layout.fragment_tasks, container, false);
         fragmentManager = getFragmentManager();
         replaceFragment();
-        BottomNavigationView navigation = view.findViewById(R.id.navigation);
+        navigation = view.findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         return view;
     }

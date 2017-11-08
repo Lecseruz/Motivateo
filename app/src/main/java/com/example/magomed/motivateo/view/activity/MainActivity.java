@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.magomed.motivateo.R;
+//import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
 import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
 import com.example.magomed.motivateo.di.components.MainActivityComponent;
 import com.example.magomed.motivateo.di.module.MainActivityModule;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
 
         fragmentManager = getFragmentManager();
 
-//        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
+        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
 
         ButterKnife.bind(this);
 

@@ -19,13 +19,16 @@ import com.example.magomed.motivateo.presenter.ListTodayTaskPresenterImpl;
 
 import java.util.List;
 
+
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInDownAnimator;
 
 public class TodayFragment extends BaseFragment implements IListTaskFragmentView {
     private TodayListTaskAdapter adapter;
     private AppCompatActivity activity;
-    private RecyclerView recyclerView;
+
+    RecyclerView recyclerView;
+
     private ListTodayTaskPresenterImpl presenter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -33,8 +36,8 @@ public class TodayFragment extends BaseFragment implements IListTaskFragmentView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(activity);
+        recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new FadeInDownAnimator());
         return view;

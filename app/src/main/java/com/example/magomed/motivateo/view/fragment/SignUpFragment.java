@@ -20,8 +20,20 @@ import com.example.magomed.motivateo.presenter.SignUpFragmentPresenter;
 
 import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SignUpFragment extends Fragment implements ISignUpFragment {
     ISignUpFragmentPresenter presenter;
+
+    @BindView(R.id.registration_email)
+    EditText email;
+
+    @BindView(R.id.registration_password)
+    EditText password;
+
+    @BindView(R.id.registration_login)
+    EditText login;
 
     private AppCompatActivity activity;
 
@@ -52,6 +64,7 @@ public class SignUpFragment extends Fragment implements ISignUpFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        ButterKnife.bind(view);
         view.findViewById(R.id.registration_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,18 +82,11 @@ public class SignUpFragment extends Fragment implements ISignUpFragment {
 
     @Override
     public boolean isEmpty() {
-        final EditText email = getView().findViewById(R.id.registration_email);
-        final EditText password = getView().findViewById(R.id.registration_password);
-        final EditText login = getView().findViewById(R.id.registration_login);
-
         return (Objects.equals(email.getText().toString(), "") && Objects.equals(password.getText().toString(), "") && Objects.equals(login.getText().toString(), ""));
     }
 
     @Override
     public User getUserInformation() {
-        final EditText email = getView().findViewById(R.id.registration_email);
-        final EditText password = getView().findViewById(R.id.registration_password);
-        final EditText login = getView().findViewById(R.id.registration_login);
         return new User(email.getText().toString(), login.getText().toString(), password.getText().toString());
     }
 

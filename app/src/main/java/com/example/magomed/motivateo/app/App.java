@@ -3,6 +3,7 @@ package com.example.magomed.motivateo.app;
 import android.app.Application;
 
 import com.example.magomed.motivateo.di.components.AuthComponent;
+//import com.example.magomed.motivateo.di.components.DaggerAuthComponent;
 import com.example.magomed.motivateo.di.components.DaggerAuthComponent;
 import com.example.magomed.motivateo.di.module.ApiModule;
 

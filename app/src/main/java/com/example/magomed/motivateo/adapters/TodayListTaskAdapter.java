@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.magomed.motivateo.R;
@@ -37,7 +38,7 @@ public class TodayListTaskAdapter extends RecyclerView.Adapter<TodayListTaskAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Task task = itemArtistList.get(position);
-        holder.textView.setText(task.getName());
+        holder.button.setText(task.getName());
     }
 
     @Override
@@ -56,11 +57,11 @@ public class TodayListTaskAdapter extends RecyclerView.Adapter<TodayListTaskAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+        Button button;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.task_name);
+            button = itemView.findViewById(R.id.task_name);
         }
     }
 }

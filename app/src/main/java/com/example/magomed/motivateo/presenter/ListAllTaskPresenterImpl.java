@@ -9,6 +9,7 @@ import com.example.magomed.motivateo.service.TaskService;
 import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.view.fragment.IListTaskFragmentView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
@@ -16,7 +17,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class ListAllTaskPresenterImpl implements IListTaskPresenter {
+public class
+ListAllTaskPresenterImpl implements IListTaskPresenter {
     private boolean isLoad = false;
     private IListTaskFragmentView view;
 
@@ -42,30 +44,36 @@ public class ListAllTaskPresenterImpl implements IListTaskPresenter {
     }
 
     private void loadTaskList(){
-        if (!isLoad) {
-            TaskService service = ServiceFactory.createRetrofitService(TaskService.class, UserService.SERVICE_ENDPOINT);
-            Message message = view.getUserInformation();
-            service.getTask(message)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<Message>() {
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.d("Error", e.getMessage());
-                        }
-
-                        @Override
-                        public void onNext(Message response) {
-                            List<Task> list = (List<Task>) response.getBody();
-                            view.setListTaskAdapter(list);
-                            isLoad = true;
-                        }
-                    });
+        List<Task> list = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            list.add(new Task("aaa"));
         }
+        view.setListTaskAdapter(list);
+//
+//        if (!isLoad) {
+//            TaskService service = ServiceFactory.createRetrofitService(TaskService.class, UserService.SERVICE_ENDPOINT);
+//            Message message = view.getUserInformation();
+//            service.getTask(message)
+//                    .subscribeOn(Schedulers.newThread())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Subscriber<Message>() {
+//                        @Override
+//                        public void onCompleted() {
+//
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//                            Log.d("Error", e.getMessage());
+//                        }
+//
+//                        @Override
+//                        public void onNext(Message response) {
+//                            List<Task> list = (List<Task>) response.getBody();
+//                            view.setListTaskAdapter(list);
+//                            isLoad = true;
+//                        }
+//                    });
+//        }
     }
 }

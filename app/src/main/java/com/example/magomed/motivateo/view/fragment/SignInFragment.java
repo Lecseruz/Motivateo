@@ -21,11 +21,20 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class SignInFragment extends Fragment implements ISignInFragment{
     SignInFragmentPresenter presenter;
 
     private AppCompatActivity activity;
+
+    @BindView(R.id.sign_in_password)
+    EditText password;
+
+    @BindView(R.id.sign_in_login)
+    EditText login;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -54,6 +63,7 @@ public class SignInFragment extends Fragment implements ISignInFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        ButterKnife.bind(view);
         view.findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,16 +81,11 @@ public class SignInFragment extends Fragment implements ISignInFragment{
     }
 
     public boolean isEmpty() {
-        final EditText password =  getView().findViewById(R.id.sign_in_password);
-        final EditText login =  getView().findViewById(R.id.sign_in_login);
-
         return (Objects.equals(password.getText().toString(), "") && Objects.equals(login.getText().toString(), ""));
     }
 
     @Override
     public User getUserInformation() {
-        final EditText password = getView().findViewById(R.id.sign_in_password);
-        final EditText login =  getView().findViewById(R.id.sign_in_login);
         return new User(null, login.getText().toString(), password.getText().toString());
     }
 

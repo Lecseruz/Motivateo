@@ -80,7 +80,6 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         switch (item.getItemId()){
             case R.id.tasks: {
                 setTitle(getString(R.string.tasks));
