@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.magomed.motivateo.R;
+import com.example.magomed.motivateo.view.fragment.CreateTaskFragment;
 import com.example.magomed.motivateo.view.fragment.SettingsFragment;
 import com.example.magomed.motivateo.view.fragment.ShopFragment;
 import com.example.magomed.motivateo.view.fragment.TaskFragment;
@@ -88,6 +89,16 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
                         .commit();
                 break;
             }
+
+            case R.id.create_task: {
+                setTitle(getString(R.string.tasks));
+                fragmentManager.beginTransaction()
+                        .replace(R.id.body_container, new CreateTaskFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            }
+
             case R.id.shop: {
                 setTitle(getString(R.string.shop));
                 fragmentManager.beginTransaction()

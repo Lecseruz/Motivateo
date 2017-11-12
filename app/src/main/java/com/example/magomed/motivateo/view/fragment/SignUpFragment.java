@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.app.App;
+import com.example.magomed.motivateo.fragments.BaseFragment;
 import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.presenter.ISignUpFragmentPresenter;
 import com.example.magomed.motivateo.presenter.SignUpFragmentPresenter;
@@ -23,7 +24,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SignUpFragment extends Fragment implements ISignUpFragment {
+public class SignUpFragment extends BaseFragment implements ISignUpFragment {
     ISignUpFragmentPresenter presenter;
 
     @BindView(R.id.registration_email)

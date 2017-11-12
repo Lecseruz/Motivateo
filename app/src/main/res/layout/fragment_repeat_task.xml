@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button_everyday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/everyday" />
+
+    <Button
+        android:id="@+id/button_every_weekday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/every_weekday" />
+
+    <Button
+        android:id="@+id/button_every_day_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/every_day_off" />
+
+    <Button
+        android:id="@+id/button_arbitrarily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/arbitrarily" />
+</LinearLayout>

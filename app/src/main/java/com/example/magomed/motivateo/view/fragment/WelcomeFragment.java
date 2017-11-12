@@ -1,11 +1,10 @@
 package com.example.magomed.motivateo.view.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,17 @@ import android.view.ViewGroup;
 
 import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.app.App;
+import com.example.magomed.motivateo.fragments.BaseFragment;
 import com.example.magomed.motivateo.presenter.WelcomeFragmentPresenterImpl;
 
 import javax.inject.Inject;
 
-public class WelcomeFragment extends Fragment implements IWelcomeFragment{
+public class WelcomeFragment extends BaseFragment implements IWelcomeFragment{
 
     @Inject
     WelcomeFragmentPresenterImpl presenter;
     private FragmentManager fragmentManager;
+
 
     private AppCompatActivity activity;
 
@@ -47,7 +48,7 @@ public class WelcomeFragment extends Fragment implements IWelcomeFragment{
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         presenter.onCreate(this);
-        this.fragmentManager = getFragmentManager();
+        this.fragmentManager = activity.getSupportFragmentManager();
     }
 
 

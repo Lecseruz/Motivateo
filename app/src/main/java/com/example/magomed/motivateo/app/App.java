@@ -22,6 +22,7 @@ public class App extends Application{
         return authComponent;
     }
 
+
     protected AuthComponent buildComponent() {
         return DaggerAuthComponent.builder()
                 .apiModule(new ApiModule(getApplicationContext()))

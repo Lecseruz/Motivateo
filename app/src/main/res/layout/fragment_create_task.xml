@@ -34,14 +34,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/remind"
-            android:textSize="@dimen/text_size"
-            android:layout_weight="1"/>
+            android:textSize="@dimen/text_size" />
+
         <Switch
+            android:id="@+id/create_task_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
+            android:layout_weight="1" />
     </LinearLayout>
 
     <Button
@@ -51,12 +52,28 @@
         android:text="@string/count"
         android:textSize="@dimen/text_size" />
 
-    <Button
-        android:id="@+id/button_notification"
+    <LinearLayout
+        android:id="@+id/body_set_count"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/notification"
-        android:textSize="@dimen/text_size" />
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:baselineAligned="true">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/count_recyclerView_1"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/count_recyclerView_2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_save"
@@ -64,4 +81,5 @@
         android:layout_height="wrap_content"
         android:text="@string/save"
         android:textSize="@dimen/text_size"/>
+
 </LinearLayout>

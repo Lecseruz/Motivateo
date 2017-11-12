@@ -30,4 +30,9 @@
 
     <string name="action_settings">Settings</string>
     <string name="exit">Exit</string>
+    <string name="create_task">Create Task</string>
+    <string name="everyday">EVeryDay</string>
+    <string name="every_weekday">Every weekday</string>
+    <string name="every_day_off">Every day off</string>
+    <string name="arbitrarily">Arbitrarily</string>
 </resources>

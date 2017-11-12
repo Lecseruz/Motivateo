@@ -1,14 +1,12 @@
 package com.example.magomed.motivateo.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.magomed.motivateo.R;
-//import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
 import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
 import com.example.magomed.motivateo.di.components.MainActivityComponent;
 import com.example.magomed.motivateo.di.module.MainActivityModule;
@@ -20,6 +18,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+//import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
+
 public class MainActivity extends AppCompatActivity implements IMainActivityView {
     @Inject
     MainActivityPresenterImpl presenter;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
     Toolbar toolbar;
 
     private MainActivityComponent component;
+
     public FragmentManager fragmentManager;
 
     @Override
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         startActivity(new Intent(MainActivity.this, InteractionActivity.class));
 

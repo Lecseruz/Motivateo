@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.app.App;
+import com.example.magomed.motivateo.fragments.BaseFragment;
 import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.presenter.SignInFragmentPresenter;
 
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class SignInFragment extends Fragment implements ISignInFragment{
+public class SignInFragment extends BaseFragment implements ISignInFragment{
     SignInFragmentPresenter presenter;
 
     private AppCompatActivity activity;
