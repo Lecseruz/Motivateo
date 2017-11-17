@@ -1,4 +1,9 @@
 <resources>
+    <string-array name="array_type_repeat">
+        <item>Everyday</item>
+        <item>EveryWeekday</item>
+        <item>Everydayoff</item>
+    </string-array>
     <string name="app_name">Motivateo</string>
     <string name="active">Active</string>
     <string name="Today">Today</string>

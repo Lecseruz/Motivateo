@@ -7,27 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.magomed.motivateo.R;
-import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
-import com.example.magomed.motivateo.di.components.MainActivityComponent;
-import com.example.magomed.motivateo.di.module.MainActivityModule;
+import com.example.magomed.motivateo.presenter.IMainActivityPresenter;
 import com.example.magomed.motivateo.presenter.MainActivityPresenterImpl;
 import com.example.magomed.motivateo.view.fragment.WelcomeFragment;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import com.example.magomed.motivateo.di.components.DaggerMainActivityComponent;
-
 public class MainActivity extends AppCompatActivity implements IMainActivityView {
-    @Inject
-    MainActivityPresenterImpl presenter;
+    IMainActivityPresenter presenter;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    private MainActivityComponent component;
 
     public FragmentManager fragmentManager;
 
@@ -36,19 +27,24 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        presenter = new MainActivityPresenterImpl(this);
         fragmentManager = getSupportFragmentManager();
 
-        startActivity(new Intent(MainActivity.this, InteractionActivity.class));
+        if(isSignUp()) {
+            startActivity(new Intent(MainActivity.this, InteractionActivity.class));
+        }
 
         ButterKnife.bind(this);
-
         setSupportActionBar(toolbar);
-        setupComponent();
         if (savedInstanceState == null){
             fragmentManager.beginTransaction()
                     .replace(R.id.body_container, new WelcomeFragment())
                     .commit();
         }
+    }
+
+    public boolean isSignUp() {
+        return presenter.isSignUp();
     }
 
     @Override
@@ -59,15 +55,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
             super.onBackPressed();
         }
         return true;
-    }
-
-    protected void setupComponent() {
-        if (component == null) {
-            component = DaggerMainActivityComponent.builder()
-                    .mainActivityModule(new MainActivityModule(this))
-                    .build();
-        }
-        component.inject(this);
     }
 
     @Override

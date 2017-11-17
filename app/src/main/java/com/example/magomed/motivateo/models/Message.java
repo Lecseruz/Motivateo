@@ -2,11 +2,11 @@ package com.example.magomed.motivateo.models;
 
 public class Message<T> {
     private int code;
-    private T body;
+    private T user;
 
-    public Message(int code, T body) {
+    public Message(int code, T user) {
         this.code = code;
-        this.body = body;
+        this.user = user;
     }
 
     public Message() {
@@ -22,11 +22,11 @@ public class Message<T> {
         this.code = code;
     }
 
-    public T getBody() {
-        return body;
+    public T getUser() {
+        return user;
     }
 
-    public void setBody(T body) {
-        this.body = body;
+    public void setUser(T user) {
+        this.user = user;
     }
 }

@@ -12,6 +12,22 @@ import com.example.magomed.motivateo.net.utils.Constants;
  */
 
 public class UserManager {
+    public void saveUserEmail(@NonNull Context context, @NonNull String email) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
+
+
+        sharedPref.edit()
+                .putString(Constants.EMAIL, email)
+                .apply();
+    }
+
+    public String getUserEmail(@NonNull Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
+        return sharedPref.getString(Constants.EMAIL, null);
+    }
+
     public void saveUserID(@NonNull Context context, @NonNull String userID) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);

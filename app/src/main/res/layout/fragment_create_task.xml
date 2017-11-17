@@ -18,12 +18,26 @@
         android:text="@string/set_time"
         android:textSize="@dimen/text_size" />
 
+    <TextView
+        android:id="@+id/time_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"/>
+
     <Button
         android:id="@+id/button_repeat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/repeat"
         android:textSize="@dimen/text_size" />
+
+    <TextView
+        android:id="@+id/repeat_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/remind"
@@ -60,20 +74,34 @@
         android:baselineAligned="true">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/count_recyclerView_1"
+            android:id="@+id/count_recyclerView"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/count_recyclerView_2"
+            android:id="@+id/type_recyclerView"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/count_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/type_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/button_save"
@@ -82,4 +110,9 @@
         android:text="@string/save"
         android:textSize="@dimen/text_size"/>
 
+    <TextView
+        android:id="@+id/error_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

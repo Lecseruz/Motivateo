@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 
-/**
- * Created by magomed on 09.11.17.
- */
 
 public class ArbitrarilyRepeatTaskFragment extends BaseFragment{
     @Nullable

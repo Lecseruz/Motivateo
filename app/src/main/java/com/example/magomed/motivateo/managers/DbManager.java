@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 public class DbManager {
 
     private static final int VERSION = 1;
-    private ContentValues cv = new ContentValues();
+    private ContentValues cv = new ContentValues();
 
     @SuppressLint("StaticFieldLeak")
     private static final DbManager INSTANCE = new DbManager();

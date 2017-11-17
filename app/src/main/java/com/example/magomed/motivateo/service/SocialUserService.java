@@ -3,14 +3,16 @@ package com.example.magomed.motivateo.service;
 import com.example.magomed.motivateo.models.Message;
 import com.example.magomed.motivateo.models.SocialUser;
 
-import retrofit.http.Body;
-import retrofit.http.POST;
-import rx.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
 
 public interface SocialUserService {
     @POST("/signInSocial")
-    Observable<Message> signIn(@Body SocialUser socialUser);
+    Call<ResponseBody> signIn(@Body SocialUser socialUser);
 
     @POST("/signUpSocial")
-    Observable<Message> signUp(@Body SocialUser socialUser);
+    Call<ResponseBody> signUp(@Body SocialUser socialUser);
 }

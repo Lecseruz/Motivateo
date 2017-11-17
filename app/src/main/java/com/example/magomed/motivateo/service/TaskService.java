@@ -1,9 +1,10 @@
 package com.example.magomed.motivateo.service;
 
 import com.example.magomed.motivateo.models.Message;
+import com.example.magomed.motivateo.models.Task;
 
-import retrofit.http.Body;
-import retrofit.http.POST;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 import rx.Observable;
 
 /**
@@ -13,4 +14,8 @@ import rx.Observable;
 public interface TaskService {
     @POST("/get")
     Observable<Message> getTask(@Body Message message);
+
+    @POST("/get")
+    Observable<Message> sendTask(@Body Task Task);
+
 }

@@ -5,19 +5,19 @@ public class Constants {
     public final static String ACCESS_TOKEN = "AUTH0_ACCESS_TOKEN";
     public final static String ID_TOKEN = "AUTH0_ID_TOKEN";
     public final static String CREDENTIAL_TYPE = "AUTH0_CREDENTIAL_TYPE";
-    public final static String MENU_TASKS = "TASKS";
-    public final static String MENU_SETTINGS = "SETTINGS";
-    public final static String MENU_SHOP = "SHOP";
-    public final static String STATE_TASKS = "STATE_TASKS";
-    public final static String STATE_SHOP = "STATE_SHOP";
-    public final static String STATE_SETTINGS = "STATE_SETTINGS";
+    public static final String ERROR_AUTH = "you dont register";
     public final static String STATE_TODAY = "TODAY";
+    public static final String ERROR_DATA = "ERROR DATA";
+    public static final String HTTPS = "https";
+    public static final String VK = "vkontakte";
+    public static final String ENDPOINT_AUTH0 = "https://%s/userinfo";
     public final static String STATE_ALL = "ALL";
-    public final static String TYPE_SIGN_IN = "TYPE";
+    public static final String ERROR_USER = "USER NOT FOUND";
     public final static String ID_USER = "AUTH0_ID_USER";
-    public final static String EVERYDAY = "EVERYDAY";
-    public final static String EVERY_WEEKDAY = "EVERY_WEEKDAY";
-    public final static String EVERY_DAY_OFF = "EVERY_DAY_OFF";
+    public static final String EMAIL = "EMAIL";
+    public static final String ERROR_CREDENTIALS = "credentials not found";
     public static final int TASK_COUNT_REPEAT = 10;
+    public static final int TASK_TYPE_REPEAT = 6;
+    public static final String SERVICE_ENDPOINT = "http://192.168.56.1:8080";
 
 }

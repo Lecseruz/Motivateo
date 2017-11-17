@@ -24,16 +24,19 @@ public class CredentialsManager {
                 .apply();
     }
 
-    @NonNull
     public Credentials getCredentials(@NonNull Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
-        return new Credentials(
-                sharedPref.getString(Constants.ID_TOKEN, null),
-                sharedPref.getString(Constants.ACCESS_TOKEN, null),
-                sharedPref.getString(Constants.CREDENTIAL_TYPE, null),
-                sharedPref.getString(Constants.REFRESH_TOKEN, null),
-                null);
+        try {
+            SharedPreferences sharedPref = context.getSharedPreferences(
+                    context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
+            return new Credentials(
+                    sharedPref.getString(Constants.ID_TOKEN, null),
+                    sharedPref.getString(Constants.ACCESS_TOKEN, null),
+                    sharedPref.getString(Constants.CREDENTIAL_TYPE, null),
+                    sharedPref.getString(Constants.REFRESH_TOKEN, null),
+                    null);
+        }catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void deleteCredentials(@NonNull Context context) {

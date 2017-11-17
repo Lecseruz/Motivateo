@@ -1,80 +1,88 @@
 package com.example.magomed.motivateo.view.fragment;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.magomed.motivateo.R;
-import com.example.magomed.motivateo.app.App;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 import com.example.magomed.motivateo.models.User;
-import com.example.magomed.motivateo.presenter.SignInFragmentPresenter;
+import com.example.magomed.motivateo.net.utils.Constants;
+import com.example.magomed.motivateo.presenter.ISignInFragmentPresenter;
+import com.example.magomed.motivateo.presenter.ListenerHandler;
+import com.example.magomed.motivateo.presenter.SignInFragmentPresenterImpl;
+import com.example.magomed.motivateo.presenter.WelcomeFragmentPresenterImpl;
 
 import java.util.Objects;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class SignInFragment extends BaseFragment implements ISignInFragment{
-    SignInFragmentPresenter presenter;
+    ISignInFragmentPresenter presenter;
 
-    private AppCompatActivity activity;
+    Button sign_in;
 
-    @BindView(R.id.sign_in_password)
     EditText password;
 
-    @BindView(R.id.sign_in_login)
     EditText login;
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        this.activity = (AppCompatActivity) activity;
-    }
+    ProgressBar progress;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    private ListenerHandler<WelcomeFragmentPresenterImpl.OnUserGetListener> userHandler;
 
-        if (context instanceof Activity) {
-            activity = (AppCompatActivity) context;
+    private WelcomeFragmentPresenterImpl.OnUserGetListener userListener = new WelcomeFragmentPresenterImpl.OnUserGetListener()
+    {
+        @Override
+        public void onUserSuccess(Class<?> cls) {
+            startActivity(cls);
+            stopProgress();
         }
-    }
+
+        @Override
+        public void onUserError(final Exception error) {
+            stopProgress();
+            Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        presenter = new SignInFragmentPresenter();
-        presenter.onCreate(this);
+        presenter = new SignInFragmentPresenterImpl();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
         ButterKnife.bind(view);
-        view.findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+        password = view.findViewById(R.id.sign_in_password);
+        login = view.findViewById(R.id.sign_in_login);
+        sign_in = view.findViewById(R.id.sign_in_button);
+        progress = view.findViewById(R.id.progress);
+
+        sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final TextView textViewInfo = view.findViewById(R.id.sign_in_text_view);
-
+                final TextView textViewInfo = view.findViewById(R.id.registration_text_view);
                 if (isEmpty()) {
-                    textViewInfo.setText("Error data");
+                    textViewInfo.setText(Constants.ERROR_DATA);
                 } else {
-                    presenter.signIn();
+                    startProgress();
+                    if (userHandler != null) {
+                        userHandler.unregister();
+                    }
+                    userHandler = presenter.signIn(new User(null, login.getText().toString(), password.getText().toString()), userListener);
                 }
             }
         });
@@ -86,18 +94,27 @@ public class SignInFragment extends BaseFragment implements ISignInFragment{
     }
 
     @Override
-    public User getUserInformation() {
-        return new User(null, login.getText().toString(), password.getText().toString());
-    }
-
-    @Override
     public void startActivity(Class<?> cls) {
-        Intent intent = new Intent(activity, cls);
+        Intent intent = new Intent(getActivity(), cls);
         startActivity(intent);
     }
 
     @Override
     public void errorSignIn() {
-        ((TextView)getView().findViewById(R.id.sign_in_text_view)).setText(" user not found");
+        try {
+            ((TextView)getActivity().findViewById(R.id.sign_in_text_view)).setText(Constants.ERROR_USER);
+        }catch (NullPointerException e){
+            Log.e(getClass().getSimpleName(), e.getMessage());
+        }
+    }
+
+    private void startProgress() {
+        progress.setVisibility(View.VISIBLE);
+        sign_in.setEnabled(false);
+    }
+
+    private void stopProgress() {
+        progress.setVisibility(View.INVISIBLE);
+        sign_in.setEnabled(true);
     }
 }

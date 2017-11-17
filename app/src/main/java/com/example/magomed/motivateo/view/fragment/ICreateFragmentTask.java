@@ -1,9 +1,9 @@
 package com.example.magomed.motivateo.view.fragment;
 
-/**
- * Created by magomed on 09.11.17.
- */
+import java.util.List;
+
 
 public interface ICreateFragmentTask {
-
+    void popFragmentFromStack();
+    void setListTaskAdapter(List<Integer> itemArtistCount, List<Integer> itemArtistType);
 }
