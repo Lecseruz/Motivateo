@@ -16,19 +16,15 @@ import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.net.utils.Constants;
-import com.example.magomed.motivateo.presenter.ISignInFragmentPresenter;
+import com.example.magomed.motivateo.presenter.AuthorizationFragmentPresenterImpl;
+import com.example.magomed.motivateo.presenter.IAuthorizationFragmentPresenter;
 import com.example.magomed.motivateo.presenter.ListenerHandler;
-import com.example.magomed.motivateo.presenter.SignInFragmentPresenterImpl;
 import com.example.magomed.motivateo.presenter.WelcomeFragmentPresenterImpl;
 
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-
 public class SignInFragment extends BaseFragment implements ISignInFragment{
-    ISignInFragmentPresenter presenter;
+    IAuthorizationFragmentPresenter presenter;
 
     Button sign_in;
 
@@ -59,13 +55,12 @@ public class SignInFragment extends BaseFragment implements ISignInFragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        presenter = new SignInFragmentPresenterImpl();
+        presenter = new AuthorizationFragmentPresenterImpl();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
-        ButterKnife.bind(view);
         password = view.findViewById(R.id.sign_in_password);
         login = view.findViewById(R.id.sign_in_login);
         sign_in = view.findViewById(R.id.sign_in_button);

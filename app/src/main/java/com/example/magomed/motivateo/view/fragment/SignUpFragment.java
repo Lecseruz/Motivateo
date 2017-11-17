@@ -16,15 +16,15 @@ import com.example.magomed.motivateo.R;
 import com.example.magomed.motivateo.fragments.BaseFragment;
 import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.net.utils.Constants;
-import com.example.magomed.motivateo.presenter.ISignUpFragmentPresenter;
+import com.example.magomed.motivateo.presenter.AuthorizationFragmentPresenterImpl;
+import com.example.magomed.motivateo.presenter.IAuthorizationFragmentPresenter;
 import com.example.magomed.motivateo.presenter.ListenerHandler;
-import com.example.magomed.motivateo.presenter.SignUpFragmentPresenterImpl;
 import com.example.magomed.motivateo.presenter.WelcomeFragmentPresenterImpl;
 
 import java.util.Objects;
 
 public class SignUpFragment extends BaseFragment implements ISignUpFragment {
-    ISignUpFragmentPresenter presenter;
+    IAuthorizationFragmentPresenter presenter;
 
     EditText email;
 
@@ -57,7 +57,7 @@ public class SignUpFragment extends BaseFragment implements ISignUpFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        presenter = new SignUpFragmentPresenterImpl();
+        presenter = new AuthorizationFragmentPresenterImpl();
     }
 
     @Override

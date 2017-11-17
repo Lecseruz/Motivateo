@@ -1,6 +1,7 @@
 package com.example.magomed.motivateo.di.components;
 
 import com.example.magomed.motivateo.di.module.ManagerModule;
+import com.example.magomed.motivateo.presenter.AuthorizationFragmentPresenterImpl;
 import com.example.magomed.motivateo.presenter.MainActivityPresenterImpl;
 import com.example.magomed.motivateo.presenter.SignInFragmentPresenterImpl;
 import com.example.magomed.motivateo.presenter.SignUpFragmentPresenterImpl;
@@ -27,4 +28,5 @@ public interface AuthComponent {
     void inject(SignInFragmentPresenterImpl signInFragmentPresenter);
     void inject(SignUpFragmentPresenterImpl signUpFragmentPresenter);
     void inject(MainActivityPresenterImpl mainActivityPresenter);
+    void inject(AuthorizationFragmentPresenterImpl authorizationFragmentPresenter)
 }
