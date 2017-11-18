@@ -1,5 +1,6 @@
 package com.example.magomed.motivateo.di.module;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.magomed.motivateo.managers.data.CredentialsManager;
@@ -15,16 +16,16 @@ public class ManagerModule {
     @Singleton
     @NonNull
     @Provides
-    public CredentialsManager provideCredentialsManager() {
-        return new CredentialsManager();
+    public CredentialsManager provideCredentialsManager(Context context) {
+        return new CredentialsManager(context);
     }
 
 
     @Singleton
     @NonNull
     @Provides
-    public UserManager provideUserManager() {
-        return new UserManager();
+    public UserManager provideUserManager(Context context) {
+        return new UserManager(context);
     }
 
 }

@@ -28,7 +28,7 @@ public class MainActivityPresenterImpl implements IMainActivityPresenter {
 
     @Override
     public boolean isSignUp() {
-        return manager.getUserID(context) != null || manager.getUserEmail(context) != null;
+        return manager.getUserID() != null || manager.getUserEmail() != null;
     }
 
     public MainActivityPresenterImpl(IMainActivityView view){

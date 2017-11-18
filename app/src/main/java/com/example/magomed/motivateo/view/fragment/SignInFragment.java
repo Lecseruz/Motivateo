@@ -2,6 +2,7 @@ package com.example.magomed.motivateo.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import com.example.magomed.motivateo.presenter.WelcomeFragmentPresenterImpl;
 
 import java.util.Objects;
 
-public class SignInFragment extends BaseFragment implements ISignInFragment{
+public class SignInFragment extends BaseFragment implements IAuthorizationFragment {
     IAuthorizationFragmentPresenter presenter;
 
     Button sign_in;
@@ -33,6 +34,8 @@ public class SignInFragment extends BaseFragment implements ISignInFragment{
     EditText login;
 
     ProgressBar progress;
+
+    FragmentManager fragmentManager;
 
     private ListenerHandler<WelcomeFragmentPresenterImpl.OnUserGetListener> userHandler;
 
@@ -56,11 +59,13 @@ public class SignInFragment extends BaseFragment implements ISignInFragment{
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         presenter = new AuthorizationFragmentPresenterImpl();
+        presenter.onCreate(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        fragmentManager = getActivity().getSupportFragmentManager();
         password = view.findViewById(R.id.sign_in_password);
         login = view.findViewById(R.id.sign_in_login);
         sign_in = view.findViewById(R.id.sign_in_button);
@@ -82,6 +87,11 @@ public class SignInFragment extends BaseFragment implements ISignInFragment{
             }
         });
         return view;
+    }
+
+    @Override
+    public void popFragmentFromStack() {
+        fragmentManager.popBackStack();
     }
 
     public boolean isEmpty() {

@@ -63,6 +63,11 @@ public class SignUpFragmentPresenterImpl implements ISignUpFragmentPresenter {
 
 
     @Override
+    public void popFragmentFromStack() {
+
+    }
+
+    @Override
     public ListenerHandler<WelcomeFragmentPresenterImpl.OnUserGetListener> signUp(final User user, WelcomeFragmentPresenterImpl.OnUserGetListener listener) {
         final ListenerHandler<WelcomeFragmentPresenterImpl.OnUserGetListener> handler = new ListenerHandler<>(listener);
         executor.execute(new Runnable() {
@@ -80,7 +85,7 @@ public class SignUpFragmentPresenterImpl implements ISignUpFragmentPresenter {
                         if (parseUser(response.body().string()).getCode() != 200) {
                             throw new IOException(Constants.ERROR_USER);
                         }
-                        userManager.saveUserEmail(context, user.getEmail());
+                        userManager.saveUserEmail(user.getEmail());
                         invokeSuccess(handler);
                     }
                 } catch (IOException e) {

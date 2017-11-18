@@ -69,6 +69,5 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
     @Override
     public void popFragmentFromStack() {
         fragmentManager.popBackStack();
-
     }
 }

@@ -72,7 +72,7 @@ public class CreateTaskFragmentPresenterImpl implements ICreateTaskFragmentPrese
 //                    @Override
 //                    public void onNext(Message response) {
 //                        if (response.getCode() == 200) {
-//                            view.popFragmentFromStack();
+//                            view.onBackPressed();
 //                        } else {
 ////                            signInFragment.errorSignIn();
 //                        }

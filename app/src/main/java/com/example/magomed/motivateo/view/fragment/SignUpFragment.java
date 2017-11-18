@@ -23,7 +23,7 @@ import com.example.magomed.motivateo.presenter.WelcomeFragmentPresenterImpl;
 
 import java.util.Objects;
 
-public class SignUpFragment extends BaseFragment implements ISignUpFragment {
+public class SignUpFragment extends BaseFragment implements IAuthorizationFragment {
     IAuthorizationFragmentPresenter presenter;
 
     EditText email;
@@ -58,6 +58,7 @@ public class SignUpFragment extends BaseFragment implements ISignUpFragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         presenter = new AuthorizationFragmentPresenterImpl();
+        presenter.onCreate(this);
     }
 
     @Override
@@ -105,6 +106,11 @@ public class SignUpFragment extends BaseFragment implements ISignUpFragment {
         }catch (NullPointerException e){
             Log.e(Constants.ERROR_DATA, e.getMessage());
         }
+    }
+
+    @Override
+    public void popFragmentFromStack() {
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 
     private void startProgress() {

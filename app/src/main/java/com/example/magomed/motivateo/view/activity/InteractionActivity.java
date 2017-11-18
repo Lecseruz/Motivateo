@@ -1,5 +1,7 @@
 package com.example.magomed.motivateo.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,10 +14,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.magomed.motivateo.R;
+import com.example.magomed.motivateo.app.App;
+import com.example.magomed.motivateo.managers.data.CredentialsManager;
+import com.example.magomed.motivateo.managers.data.UserManager;
 import com.example.magomed.motivateo.view.fragment.CreateTaskFragment;
 import com.example.magomed.motivateo.view.fragment.SettingsFragment;
 import com.example.magomed.motivateo.view.fragment.ShopFragment;
 import com.example.magomed.motivateo.view.fragment.TaskFragment;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,16 +34,27 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @Inject
+    UserManager userManager;
+
+    @Inject
+    Context context;
+
+    @Inject
+    CredentialsManager credentialsManager;
+
     FragmentManager fragmentManager;
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
 
+        App.getAppComponent().inject(this);
         toolbar.inflateMenu(R.menu.menu_authorization);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -104,6 +122,13 @@ public class InteractionActivity extends AppCompatActivity implements Navigation
                         .replace(R.id.body_container, new SettingsFragment())
                         .commit();
                 break;
+            }
+
+            case R.id.exit: {
+                userManager.deleteUserID();
+                userManager.deleteUserEmail();
+                credentialsManager.deleteCredentials();
+                super.onBackPressed();
             }
 
             default: break;

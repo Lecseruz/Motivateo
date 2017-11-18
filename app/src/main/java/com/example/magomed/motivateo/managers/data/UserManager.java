@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.example.magomed.motivateo.R;
+import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.net.utils.Constants;
 
 /**
@@ -12,7 +13,14 @@ import com.example.magomed.motivateo.net.utils.Constants;
  */
 
 public class UserManager {
-    public void saveUserEmail(@NonNull Context context, @NonNull String email) {
+
+    Context context;
+
+    public UserManager(Context context) {
+        this.context = context;
+    }
+
+    public void saveUserEmail(@NonNull String email) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
 
@@ -22,13 +30,21 @@ public class UserManager {
                 .apply();
     }
 
-    public String getUserEmail(@NonNull Context context) {
+    public String getUserEmail() {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
         return sharedPref.getString(Constants.EMAIL, null);
     }
 
-    public void saveUserID(@NonNull Context context, @NonNull String userID) {
+    public void deleteUserEmail(){
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
+        sharedPref.edit()
+                .putString(Constants.EMAIL, null)
+                .apply();
+    }
+
+    public void saveUserID(@NonNull String userID) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
 
@@ -38,13 +54,13 @@ public class UserManager {
                 .apply();
     }
 
-    public String getUserID(@NonNull Context context) {
+    public String getUserID() {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
         return sharedPref.getString(Constants.ID_USER, null);
     }
 
-    public void deleteUserID(@NonNull Context context) {
+    public void deleteUserID() {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
         sharedPref.edit()

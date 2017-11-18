@@ -1,6 +1,10 @@
 package com.example.magomed.motivateo.view.fragment;
 
-public interface ISignInFragment {
+/**
+ * Created by magomed on 18.11.17.
+ */
+
+public interface IAuthorizationFragment {
     void popFragmentFromStack();
     boolean isEmpty();
     void startActivity(Class<?> cls);

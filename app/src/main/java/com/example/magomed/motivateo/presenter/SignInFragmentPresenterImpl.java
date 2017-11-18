@@ -11,6 +11,7 @@ import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.net.utils.Constants;
 import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.view.activity.InteractionActivity;
+import com.example.magomed.motivateo.view.fragment.IAuthorizationFragment;
 import com.example.magomed.motivateo.view.fragment.ISignInFragment;
 import com.example.magomed.motivateo.view.fragment.SignUpFragment;
 import com.google.gson.Gson;
@@ -35,6 +36,8 @@ import static android.R.attr.name;
 
 public class SignInFragmentPresenterImpl implements ISignInFragmentPresenter {
 
+    IAuthorizationFragment view;
+
     @Inject
     Gson GSON;
 
@@ -58,6 +61,11 @@ public class SignInFragmentPresenterImpl implements ISignInFragmentPresenter {
             component = App.getAppComponent();
         }
         component.inject(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        view.popFragmentFromStack();
     }
 
     @Override

@@ -12,6 +12,8 @@ import com.example.magomed.motivateo.models.User;
 import com.example.magomed.motivateo.net.utils.Constants;
 import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.view.activity.InteractionActivity;
+import com.example.magomed.motivateo.view.fragment.IAuthorizationFragment;
+import com.example.magomed.motivateo.view.fragment.ISignInFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -28,6 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthorizationFragmentPresenterImpl implements IAuthorizationFragmentPresenter {
+    IAuthorizationFragment view;
 
     @Inject
     UserManager userManager;
@@ -61,6 +64,8 @@ public class AuthorizationFragmentPresenterImpl implements IAuthorizationFragmen
     }
 
 
+
+
     @Override
     public ListenerHandler<WelcomeFragmentPresenterImpl.OnUserGetListener> signUp(final User user, WelcomeFragmentPresenterImpl.OnUserGetListener listener) {
         final ListenerHandler<WelcomeFragmentPresenterImpl.OnUserGetListener> handler = new ListenerHandler<>(listener);
@@ -79,7 +84,7 @@ public class AuthorizationFragmentPresenterImpl implements IAuthorizationFragmen
                         if (parseUser(response.body().string()).getCode() != 200) {
                             throw new IOException(Constants.ERROR_USER);
                         }
-                        userManager.saveUserEmail(context, user.getEmail());
+                        userManager.saveUserEmail(user.getEmail());
                         invokeSuccess(handler);
                     }
                 } catch (IOException e) {
@@ -88,6 +93,16 @@ public class AuthorizationFragmentPresenterImpl implements IAuthorizationFragmen
             }
         });
         return handler;
+    }
+
+    @Override
+    public void onCreate(IAuthorizationFragment authorizationFragment) {
+        this.view = authorizationFragment;
+    }
+
+    @Override
+    public void onBackPressed() {
+        view.popFragmentFromStack();
     }
 
     @Override
@@ -125,6 +140,7 @@ public class AuthorizationFragmentPresenterImpl implements IAuthorizationFragmen
                 WelcomeFragmentPresenterImpl.OnUserGetListener listener = handler.getListener();
                 if (listener != null) {
                     Log.d("API", "listener NOT null");
+                    onBackPressed();
                     listener.onUserSuccess(InteractionActivity.class);
                 } else {
                     Log.d("API", "listener is null");
@@ -140,6 +156,7 @@ public class AuthorizationFragmentPresenterImpl implements IAuthorizationFragmen
                 WelcomeFragmentPresenterImpl.OnUserGetListener listener = handler.getListener();
                 if (listener != null) {
                     Log.d("API", "listener NOT null");
+                    onBackPressed();
                     listener.onUserError(error);
                 } else {
                     Log.d("API", "listener is null");

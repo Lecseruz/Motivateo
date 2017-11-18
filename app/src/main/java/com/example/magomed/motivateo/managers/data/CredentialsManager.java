@@ -10,8 +10,13 @@ import com.example.magomed.motivateo.net.utils.Constants;
 
 
 public class CredentialsManager {
+    Context context;
 
-    public void saveCredentials(@NonNull Context context, @NonNull Credentials credentials) {
+    public CredentialsManager(Context context){
+        this.context = context;
+    }
+
+    public void saveCredentials(@NonNull Credentials credentials) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
 
@@ -24,7 +29,7 @@ public class CredentialsManager {
                 .apply();
     }
 
-    public Credentials getCredentials(@NonNull Context context) {
+    public Credentials getCredentials() {
         try {
             SharedPreferences sharedPref = context.getSharedPreferences(
                     context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
@@ -39,7 +44,7 @@ public class CredentialsManager {
         }
     }
 
-    public void deleteCredentials(@NonNull Context context) {
+    public void deleteCredentials() {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.auth0_preferences), Context.MODE_PRIVATE);
 

@@ -112,7 +112,7 @@ public class WelcomeFragmentPresenterImpl implements IWelcomeFragmentPresenter {
 
                     @Override
                     public void onSuccess(@NonNull Credentials credentials) {
-                        credentialsManager.saveCredentials(context, credentials);
+                        credentialsManager.saveCredentials(credentials);
                         saveUserProfile();
                         try {
                             signUp(userListener);
@@ -124,8 +124,8 @@ public class WelcomeFragmentPresenterImpl implements IWelcomeFragmentPresenter {
     }
 
     public void saveUserProfile() {
-        Log.d("accessToken", credentialsManager.getCredentials(context).getAccessToken());
-        String accessToken = credentialsManager.getCredentials(context).getAccessToken();
+        Log.d("accessToken", credentialsManager.getCredentials().getAccessToken());
+        String accessToken = credentialsManager.getCredentials().getAccessToken();
         if (accessToken == null) {
             Log.d(Constants.ERROR_DATA, Constants.ERROR_CREDENTIALS);
             return;
@@ -135,7 +135,7 @@ public class WelcomeFragmentPresenterImpl implements IWelcomeFragmentPresenter {
                 .start(new BaseCallback<UserProfile, AuthenticationException>() {
                     @Override
                     public void onSuccess(UserProfile userProfile) {
-                        userManager.saveUserID(context, userProfile.getId());
+                        userManager.saveUserID(userProfile.getId());
                     }
 
                     @Override
@@ -151,12 +151,12 @@ public class WelcomeFragmentPresenterImpl implements IWelcomeFragmentPresenter {
             @Override
             public void run() {
                 try {
-                    String userId = userManager.getUserID(context);
+                    String userId = userManager.getUserID();
 
                     if (userId == null) {
                         throw new IOException(Constants.ERROR_AUTH);
                     }
-                    Response<ResponseBody> response = service.signUp(new SocialUser(credentialsManager.getCredentials(context).getAccessToken(), userId)).execute();
+                    Response<ResponseBody> response = service.signUp(new SocialUser(credentialsManager.getCredentials().getAccessToken(), userId)).execute();
                     if (response.code() != 200) {
                         throw new IOException("HTTP code " + response.code());
                     }
@@ -167,7 +167,7 @@ public class WelcomeFragmentPresenterImpl implements IWelcomeFragmentPresenter {
                         if (parseUser(response.body().string()).getCode() != 200) {
                             throw new IOException(Constants.ERROR_USER);
                         }
-                        userManager.saveUserID(context, userId);
+                        userManager.saveUserID(userId);
                         invokeSuccess(userListener);
                     }
                 } catch (IOException e) {
