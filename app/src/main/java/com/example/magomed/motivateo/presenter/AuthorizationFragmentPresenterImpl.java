@@ -13,7 +13,6 @@ import com.example.magomed.motivateo.net.utils.Constants;
 import com.example.magomed.motivateo.service.UserService;
 import com.example.magomed.motivateo.view.activity.InteractionActivity;
 import com.example.magomed.motivateo.view.fragment.IAuthorizationFragment;
-import com.example.magomed.motivateo.view.fragment.ISignInFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
